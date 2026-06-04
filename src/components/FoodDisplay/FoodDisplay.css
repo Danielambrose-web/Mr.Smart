@@ -1,0 +1,103 @@
+.food-display {
+  padding: 40px 20px;
+  background-color: #fff;
+}
+
+.food-display-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.food-item {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.food-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.food-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.food-item h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c2c2c;
+  padding: 15px 15px 8px;
+}
+
+.food-item p {
+  font-size: 13px;
+  color: #757575;
+  line-height: 1.4;
+  padding: 0 15px 12px;
+}
+
+.food-item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px 15px;
+}
+
+.food-item-price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ff7f50;
+}
+
+.add-to-basket-btn {
+  background-color: #c1272d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-to-basket-btn:hover {
+  background-color: #a61f24;
+  transform: scale(1.05);
+}
+
+.add-to-basket-btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .food-display-list {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .food-display-list {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+  }
+
+  .food-item h3 {
+    font-size: 14px;
+  }
+
+  .food-item p {
+    font-size: 11px;
+  }
+}
