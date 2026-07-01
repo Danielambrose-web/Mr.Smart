@@ -1,15 +1,30 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { icons } from "../../assets/food";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
+import { StoreContext } from "../../context/Cartcontext";
 
 const Navbar = () => {
-  const [menu, setMenu] = useState("HIW");
+  const [menu, setMenu] = useState("menu");
+  const { cartItems, showCart, setShowCart } = useContext(StoreContext);
+
+  // Calculate total items in cart
+  const getTotalItems = () => {
+    return Object.values(cartItems).reduce((total, qty) => total + qty, 0);
+  };
+
+  const toggleCart = () => {
+    setShowCart(!showCart);
+  };
+
   return (
     <div className="navbar">
       <div className="logo">
-        <p>
-          Mr.<span>Smart</span>
-        </p>
+        <Link to="/">
+          <p>
+            Mr.<span>Smart</span>
+          </p>
+        </Link>
       </div>
       <div className="nav-links">
         <ul>
@@ -19,25 +34,33 @@ const Navbar = () => {
             }}
             className={menu === "menu" ? "active" : ""}
           >
-            Menu
+            <Link to="/">Menu</Link>
           </li>
-          <li 
-                      onClick={() => {
-              setMenu("HIW");
-            }} className={menu === "HIW" ? "active" : ""}>How it works</li>
           <li
-                       onClick={() => {
+            onClick={() => {
+              setMenu("HIW");
+            }}
+            className={menu === "HIW" ? "active" : ""}
+          >
+            How it works
+          </li>
+          <li
+            onClick={() => {
               setMenu("WCU");
-            }} className={menu === "WCU" ? "active" : ""}>
+            }}
+            className={menu === "WCU" ? "active" : ""}
+          >
             why Choose Mr.<span>Smart</span>
           </li>
         </ul>
       </div>
-      <div className="cart">
-        <img src={icons.cart} alt="" />
-        <div className="dot">
-          <p>23</p>
-        </div>
+      <div className="cart" onClick={toggleCart}>
+        <img src={icons.cart} alt="cart" />
+        {getTotalItems() > 0 && (
+          <div className="dot">
+            <p>{getTotalItems()}</p>
+          </div>
+        )}
       </div>
     </div>
   );
