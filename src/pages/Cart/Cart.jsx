@@ -4,7 +4,7 @@ import { icons } from "../../assets/food";
 import "./Cart.css";
 
 const Cart = () => {
-  const { cartItems, food_list, addToCart, removeFromCart } =
+  const { cartItems, food_list, addToCart, removeFromCart, setShowCart } =
     useContext(StoreContext);
 
   // Calculate cart totals
@@ -20,9 +20,16 @@ const Cart = () => {
   const total = subtotal + delivery_fee;
 
   return (
-    <div className="cart-container">
-      <div className="cart-main">
-        <h2>Your basket</h2>
+    <>
+      <div className="cart-overlay" onClick={() => setShowCart(false)}></div>
+      <div className="cart-container">
+        <div className="cart-header">
+          <h2>Your basket</h2>
+          <button className="close-btn" onClick={() => setShowCart(false)}>
+            <img src={icons.cross} alt="close" />
+          </button>
+        </div>
+
         <div className="cart-items">
           {food_list.map((item) => {
             if (cartItems[item._id] > 0) {
@@ -57,7 +64,7 @@ const Cart = () => {
                       }
                     }}
                   >
-                    <img src={icons.cross} alt="delete" />
+                    <img  src={icons.cross} alt="delete" />
                   </button>
                 </div>
               );
@@ -65,9 +72,7 @@ const Cart = () => {
             return null;
           })}
         </div>
-      </div>
 
-      <div className="cart-sidebar">
         <div className="cart-summary">
           <h3>Summary</h3>
           <div className="summary-row">
@@ -85,8 +90,10 @@ const Cart = () => {
           <button className="checkout-btn">Checkout</button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export default Cart;
+
+
