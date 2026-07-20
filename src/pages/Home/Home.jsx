@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import FoodDisplay from "../../components/FoodDisplay/FoodDisplay";
 import { useState } from "react";
 
+
 const Home = () => {
   const [category, setCategory] = useState("All");
 

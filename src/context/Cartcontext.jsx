@@ -4,6 +4,7 @@ import { food_list } from "../assets/food";
 const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
+  const [showCart, setShowCart] = useState(false);
 
   const addToCart = (itemId) => {
     if (!cartItems[itemId]) {
@@ -11,6 +12,7 @@ const StoreContextProvider = (props) => {
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
+    setShowCart(true);
   };
 
   const removeFromCart = (itemId) => {
@@ -30,6 +32,8 @@ const StoreContextProvider = (props) => {
     cartItems,
     addToCart,
     removeFromCart,
+    showCart,
+    setShowCart,
   };
 
   return (

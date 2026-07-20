@@ -1,15 +1,19 @@
-import Navbar from "./components/Navbar/Navbar"
-import Home from "./pages/Home/Home"
-
-
+import { useContext } from "react";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home/Home";
+import Cart from "./pages/Cart/Cart";
+import { StoreContext } from "./context/Cartcontext";
 
 const App = () => {
-  return (
-    <div>
-      <Navbar/>
-      <Home/>
-    </div>
-  )
-}
+  const { showCart } = useContext(StoreContext);
 
-export default App
+  return (
+    <div className="app">
+      <Navbar />
+      <Home />
+      {showCart && <Cart />}
+    </div>
+  );
+};
+
+export default App;
